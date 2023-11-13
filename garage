@@ -1,0 +1,35 @@
+class ParkingGarage:
+    def __init__(self, tickets, parkingSpaces, currentTicket):
+        self.tickets = tickets
+        self.parkingSpaces = parkingSpaces
+        self.currentTicket = currentTicket
+
+
+    def takeTicket(self):
+        if self.tickets and sekf.parkingSpaces:
+            taken_ticket = self.tickets.pop()
+            taken_space = self.parkingSpaces.pop()
+            self.currentTicket[taken_space] = taken_ticket
+            return taken_ticket, taken_space
+
+
+    def payForParking(self, ticket, space):
+        if ticket in self.currentTicket.values():
+            print("How may I help you today, ready to make a payment?")
+            del self.currentTicket[space]
+            print("Thank you have a nice day! You have 15 mintues to leave.")
+        else:
+            print("This ticket is not valid or has already been paid.")
+
+    
+    def leaveGarage(self, ticket, space):
+        if ticket not in self.tickets:
+            self.tickets.append(ticket)
+            self.parkingSpaces.append(space)
+            print("Thank you, have a nice day!")
+
+tickets = ["$15 Sat 8PM", "$10 Wed 7PM", "$10 Thu 7:30PM"]
+parkingSpaces = ["2B", "2C", "5D"]
+currentTicket = {}
+
+garage = ParkingGarage(tickets, parkingSpaces, currentTicket)
